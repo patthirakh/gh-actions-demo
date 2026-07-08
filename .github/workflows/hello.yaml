@@ -14,13 +14,11 @@ on:
     
 jobs:
   echo-vars:
-    # env for this job
     env:
       PACKAGE_PATH: '.'
     runs-on: ubuntu-latest
     steps:
       - name: Echo Github Variable
-        # APP Version ex. Node version
         env:
           APP_VERSION: 2.34.5"
         run: |
