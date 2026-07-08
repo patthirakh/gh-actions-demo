@@ -11,6 +11,15 @@ on:
     types: ["on-demand-test"]
     
 jobs:
+  echo-vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Github Variable
+        run: |
+          echo "This job trigger by ${{ github.event_name }}";
+          echo "This repository is ${{ github.repository }}";
+          echo "This branch is ${{ github.ref_name }}"
+  
   hello-job:
     runs-on: ubuntu-latest
     steps:
