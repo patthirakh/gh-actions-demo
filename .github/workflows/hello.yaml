@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo Github Variable
-        if: ${{ runner.os == 'linux' }}
+        if: ${{ runner.os == 'Linux' }}
         # app version ex. node.js version
         env:
           APP_VERSION: "2.34.5"
