@@ -33,6 +33,7 @@ jobs:
           echo "The Database password is ${{ secrets.DB_PASSWORD }}"
   
   hello-job:
+    if: ${{ github.event_name != 'repository_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
@@ -40,8 +41,10 @@ jobs:
       - name: Retrive client payload
         run: echo "Client send status ${{ github.event.client_payload.status }}"
         
-  Seccond-job:
+  seccond-job:
+    if: ${{ github.event_name != 'repository_dispatch' }}
     runs-on: windows-latest
+    needs: hello-job
     steps:
       - run: echo "This job is running on ${{ runner.os }}"
-        
+        if: ${{ runner.os == 'linux' }}
