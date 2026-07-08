@@ -1,4 +1,6 @@
 name: Hello World
+env:
+  APP_NAME: "Demo Application"
 on:
   push:
     branches: [main]
@@ -12,20 +14,26 @@ on:
     
 jobs:
   echo-vars:
+    # env for this job
+    env:
+      PACKAGE_PATH: '.'
     runs-on: ubuntu-latest
     steps:
       - name: Echo Github Variable
+        # APP Version ex. Node version
+        env:
+          APP_VERSION: 2.34.5"
         run: |
           echo "This job trigger by ${{ github.event_name }}";
           echo "This repository is ${{ github.repository }}";
-          echo "This branch is ${{ github.ref_name }}"
+          echo "This branch is ${{ github.ref_name }}";
+          echo "This is a ${{ env.APP_NAME }} version ${{ env.APP_VERSION }}"
   
   hello-job:
     runs-on: ubuntu-latest
     steps:
       - name: Run a one-line script
         run: echo "Hello GitHub Actions!"
-        
       - name: Retrive client payload
         run: echo "Client send status ${{ github.event.client_payload.status }}"
         
