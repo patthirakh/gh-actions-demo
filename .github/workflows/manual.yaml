@@ -1,3 +1,4 @@
+name: Manual
 on:
   workflow_dispatch:
     inputs:
@@ -26,8 +27,9 @@ jobs:
         run: ls ${{ github.workspace }}
   test:
     runs-on: ubuntu-latest
+    if: ${{ inputs.run_ui_tests }}
     steps:
       - name: UI Testing
-        if: ${{ inputs.run_ui_tests }}
+        # if: ${{ inputs.run_ui_tests }}
         run: echo "Run UI testing tools in ${{ inputs.environment }} environment"
         
